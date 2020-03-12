@@ -1,8 +1,6 @@
 package pl.coderstrust.sort;
 
 
-import java.util.Arrays;
-
 /**
  * Posortować tablicę (malejąco): (14, 123, 54, 65, 46, 1, 26) -> (123, 65, 54, 46, 26, 14, 1)
  * <p>
@@ -22,43 +20,33 @@ import java.util.Arrays;
 public class SelectionSort {
 
 
-    public static void main(String[] args) {
-        int[] array = {14, 123, 54, 65, 46, 1, 26};
-
-        System.out.println(Arrays.toString(array));
-
-        int[] result = sort(array);
-
-        System.out.println(Arrays.toString(result));
-
-
-    }
-
-
     public static int[] sort(int[] array) {
         int[] sortedArray = new int[array.length];
 
         for (int i = 0; i < array.length; i++) {
-            int maximumIndex = findMaximumIndex(array);
+            int maximumIndex = findMaximumIndex(array, i);
 
-            sortedArray[i] = array[maximumIndex];
+            int maxValue = array[maximumIndex];
 
-            array[maximumIndex] = 0;
+            sortedArray[i] = maxValue;
 
+            int currentValue = array[i];
+            array[i] = maxValue;
+            array[maximumIndex] = currentValue;
         }
-
-
         return sortedArray;
     }
 
-    public static int findMaximumIndex(int[] array) {
-        int indexOfCurrentMaximumValue = 0;
+    public static int findMaximumIndex(int[] array, int current) {
+        int indexOfCurrentMaximumValue = current;
 
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] < array[indexOfCurrentMaximumValue]) {
+        for (int i = current; i < array.length; i++) {
+            if (array[i] > array[indexOfCurrentMaximumValue]) {
                 indexOfCurrentMaximumValue = i;
             }
         }
         return indexOfCurrentMaximumValue;
     }
+
+
 }
