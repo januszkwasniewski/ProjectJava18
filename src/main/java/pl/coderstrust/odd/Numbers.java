@@ -6,7 +6,6 @@ public class Numbers {
         return number % 2 == 0;
     }
 
-
     public static int printTable(int number) {
         if (number < 0) {
             throw new IllegalArgumentException("You cannot use negative number");
